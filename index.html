@@ -402,7 +402,7 @@ function buildDeck(){
     ['skip','reverse','draw2'].forEach(a=>d.push({id:id++,c,v:a},{id:id++,c,v:a}));
   });
   for(let i=0;i<4;i++)d.push({id:id++,c:'wild',v:'wild'},{id:id++,c:'wild',v:'wild_draw4'});
-  return shuffle(d); // 108 kartu
+  return shuffle(d);
 }
 
 /* ============ ENGINE (dijalankan oleh host / lokal) ============ */
@@ -803,7 +803,7 @@ function leaveGame(){
   else netLeave();
 }
 
-/* ============ NETWORK (OPTIMASI TANPA DELAY) ============ */
+/* ============ NETWORK ============ */
 const N={db:null,fb:null,uid:null,code:null,isHost:false,unsub:[],meta:null,players:{},offset:0,leaving:false,hb:null,off:{},hostTimer:null,initProm:null};
 const R=p=>N.fb.ref(N.db,p);
 function netInit(silent){
@@ -836,14 +836,11 @@ function getName(){
 function listen(path,cb,type){
   const r=R(path),f=N.fb[type||'onValue'](r,cb);N.unsub.push(f);
 }
-function bindPresence(){
-  const F=N.fb,pr=R(`rooms/${N.code}/players/${N.uid}/on`);
-  listen('.info/connected',s=>{if(s.val()===true){F.onDisconnect(pr).set(false);F.set(pr,true).catch(()=>{})}});
-}
 async function joinSelf(name){
   const F=N.fb;
   await F.update(R(`rooms/${N.code}/players/${N.uid}`),{name,j:F.serverTimestamp(),on:true});
-  bindPresence();
+  const pr=R(`rooms/${N.code}/players/${N.uid}/on`);
+  listen('.info/connected',s=>{if(s.val()===true){F.onDisconnect(pr).set(false);F.set(pr,true).catch(()=>{})}});
 }
 async function netCreate({pass,max,pub,auto}){
   const name=cfg.name;if(!await netInit())return;
@@ -851,13 +848,7 @@ async function netCreate({pass,max,pub,auto}){
   for(let i=0;i<6&&!ok;i++){
     code=genCode();
     try{
-      const r=await F.runTransaction(R(`rooms/${code}`),cur=>{
-        if(cur!==null)return undefined;
-        return{
-          meta:{host:N.uid,pass:ph,max,pub:!!pub,min:auto?2:max},
-          players:{[N.uid]:{name,j:F.serverTimestamp(),on:true}}
-        };
-      });
+      const r=await F.runTransaction(R(`rooms/${code}/meta`),cur=>cur===null?{host:N.uid,pass:ph,max,pub:!!pub,min:auto?2:max}:undefined);
       ok=r.committed;
     }catch(e){console.error(e);break}
   }
@@ -866,7 +857,8 @@ async function netCreate({pass,max,pub,auto}){
   N.meta={host:N.uid,pass:ph,max,pub:!!pub,min:auto?2:max};
   N.players={[N.uid]:{name,j:Date.now(),on:true}};
   show('sWait');sfx('join');
-  bindPresence();startRoomListeners(true);
+  startRoomListeners(true);
+  joinSelf(name).catch(()=>toast(t('errNet')));
   if(pub&&!pass){
     const lr=R('lobby/'+code),beat=()=>F.set(lr,{host:N.uid,n:Object.keys(N.players).length||1,max,t:F.serverTimestamp()}).catch(()=>{});
     F.onDisconnect(lr).remove();beat();N.hb=setInterval(beat,15000);N.beat=beat;
