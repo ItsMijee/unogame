@@ -9,8 +9,8 @@
 *{box-sizing:border-box;margin:0;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
 input{user-select:text;-webkit-user-select:text}
 html,body{height:100%}
-body{height:100vh;height:100dvh;overflow:hidden;color:var(--txt);background:#0d2118 url(uno-assets/table/table_bg_portrait.jpg) center/cover}
-@media(min-width:768px) and (orientation:landscape){body{background-image:url(uno-assets/table/table_bg.jpg)}}
+body{height:100vh;height:100dvh;overflow:hidden;color:var(--txt);background:#0d2118 url(assets/table/table_bg_portrait.jpg) center/cover}
+@media(min-width:768px) and (orientation:landscape){body{background-image:url(assets/table/table_bg.jpg)}}
 .screen{display:none;height:100%;width:100%}
 .screen.on{display:flex}
 .cs{align-items:center;justify-content:center;padding:16px}
@@ -122,7 +122,7 @@ td{padding:6px 4px;border-bottom:1px solid var(--line);text-align:left}td:last-c
 
 <!-- MENU -->
 <div id="sMenu" class="screen cs on"><div class="panel">
-  <img class="logo" src="uno-assets/ui/logo.png" alt="UNO">
+  <img class="logo" src="assets/ui/logo.png" alt="UNO">
   <button class="btn pri" data-act="single" data-i18n="single"></button>
   <button class="btn sec" data-act="multi" data-i18n="multi"></button>
   <button class="btn ghost" data-act="opts" data-i18n="options"></button>
@@ -159,23 +159,23 @@ td{padding:6px 4px;border-bottom:1px solid var(--line);text-align:left}td:last-c
   <div class="hud"><button data-act="pause" data-i18n="menuBtn"></button><div id="turnLbl">-</div></div>
   <div id="opps"></div>
   <div class="tc">
-    <img id="dirRing" src="uno-assets/ui/direction_cw.png" alt="">
+    <img id="dirRing" src="assets/ui/direction_cw.png" alt="">
     <div id="status">-</div>
     <div class="piles">
-      <div class="slotc" id="deck" data-act="draw"><img src="uno-assets/cards/card_back.png" alt=""><div id="deckN">0</div></div>
+      <div class="slotc" id="deck" data-act="draw"><img src="assets/cards/card_back.png" alt=""><div id="deckN">0</div></div>
       <div id="discard"></div>
     </div>
-    <div class="cpill" id="cpill"><img id="cIcon" src="uno-assets/ui/color_red.png" alt=""><span id="cName"></span></div>
+    <div class="cpill" id="cpill"><img id="cIcon" src="assets/ui/color_red.png" alt=""><span id="cName"></span></div>
   </div>
   <div class="me">
     <div id="emoRow"></div>
     <div class="ctl">
-      <div class="meinfo" id="meBox"><img id="meAv" src="uno-assets/avatars/avatar_1.png" alt="">
+      <div class="meinfo" id="meBox"><img id="meAv" src="assets/avatars/avatar_1.png" alt="">
         <div><div style="font-size:13px;font-weight:800" id="meNm"></div><div class="mut"><span id="meCnt">0</span> <span data-i18n="cards"></span></div></div></div>
       <div class="acts">
         <button id="passBtn" data-act="pass" data-i18n="pass"></button>
         <button id="emoBtn" data-act="emoToggle">☺</button>
-        <img id="unoBtn" src="uno-assets/ui/uno_button.png" data-act="uno" alt="UNO">
+        <img id="unoBtn" src="assets/ui/uno_button.png" data-act="uno" alt="UNO">
       </div>
     </div>
     <div class="hand" id="hand"></div>
@@ -222,10 +222,10 @@ td{padding:6px 4px;border-bottom:1px solid var(--line);text-align:left}td:last-c
 <div class="modal" id="mColor"><div class="box">
   <h3 data-i18n="chooseColor"></h3>
   <div class="wg">
-    <div class="wi" data-act="color" data-c="red"><img src="uno-assets/ui/color_red.png" alt=""><span style="color:#ff6b6b" data-i18n="c_red"></span></div>
-    <div class="wi" data-act="color" data-c="blue"><img src="uno-assets/ui/color_blue.png" alt=""><span style="color:#48dbfb" data-i18n="c_blue"></span></div>
-    <div class="wi" data-act="color" data-c="green"><img src="uno-assets/ui/color_green.png" alt=""><span style="color:#1dd1a1" data-i18n="c_green"></span></div>
-    <div class="wi" data-act="color" data-c="yellow"><img src="uno-assets/ui/color_yellow.png" alt=""><span style="color:#feca57" data-i18n="c_yellow"></span></div>
+    <div class="wi" data-act="color" data-c="red"><img src="assets/ui/color_red.png" alt=""><span style="color:#ff6b6b" data-i18n="c_red"></span></div>
+    <div class="wi" data-act="color" data-c="blue"><img src="assets/ui/color_blue.png" alt=""><span style="color:#48dbfb" data-i18n="c_blue"></span></div>
+    <div class="wi" data-act="color" data-c="green"><img src="assets/ui/color_green.png" alt=""><span style="color:#1dd1a1" data-i18n="c_green"></span></div>
+    <div class="wi" data-act="color" data-c="yellow"><img src="assets/ui/color_yellow.png" alt=""><span style="color:#feca57" data-i18n="c_yellow"></span></div>
   </div>
 </div></div>
 
@@ -285,7 +285,7 @@ const FBCFG={
 
 /* ============ UTIL & SETTING ============ */
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-const CP='uno-assets/cards/',AP='uno-assets/avatars/',UP='uno-assets/ui/';
+const CP='assets/cards/',AP='assets/avatars/',UP='assets/ui/';
 const COLORS=['red','blue','green','yellow'];
 const mod=(a,n)=>((a%n)+n)%n;
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
@@ -431,7 +431,7 @@ function gStart(plist,scores,round){
   plist.forEach(p=>{G.names[p.uid]=p.name;G.av[p.uid]=p.av;G.bots[p.uid]=!!p.bot;G.uno[p.uid]=false;if(G.scores[p.uid]==null)G.scores[p.uid]=0});
   plist.forEach(p=>{G.hands[p.uid]=draw(7)});
   let first=draw(1)[0];
-  while(first.v==='wild_draw4'){G.deck.push(first);shuffle(G.deck);first=draw(1)[0]} // aturan resmi: Wild +4 tidak boleh jadi kartu awal
+  while(first.v==='wild_draw4'){G.deck.push(first);shuffle(G.deck);first=draw(1)[0]}
   G.disc.push(first);
   G.color=first.c==='wild'?COLORS[Math.random()*4|0]:first.c;
   const n=G.order.length;
@@ -803,21 +803,25 @@ function leaveGame(){
   else netLeave();
 }
 
-/* ============ NETWORK ============ */
-const N={db:null,fb:null,uid:null,code:null,isHost:false,unsub:[],meta:null,players:{},offset:0,leaving:false,hb:null,off:{},hostTimer:null};
+/* ============ NETWORK (OPTIMASI TANPA DELAY) ============ */
+const N={db:null,fb:null,uid:null,code:null,isHost:false,unsub:[],meta:null,players:{},offset:0,leaving:false,hb:null,off:{},hostTimer:null,initProm:null};
 const R=p=>N.fb.ref(N.db,p);
-async function netInit(){
-  if(N.db)return true;
-  try{
-    const B=`https://www.gstatic.com/firebasejs/${FB_VER}/`;
-    const [A,D,Au]=await Promise.all([import(B+'firebase-app.js'),import(B+'firebase-database.js'),import(B+'firebase-auth.js')]);
-    const app=A.initializeApp(FBCFG);N.fb=D;N.db=D.getDatabase(app);
-    const auth=Au.getAuth(app);await auth.authStateReady();
-    if(!auth.currentUser)await Au.signInAnonymously(auth);
-    N.uid=auth.currentUser.uid;
-    D.onValue(D.ref(N.db,'.info/serverTimeOffset'),s=>{N.offset=s.val()||0});
-    return true;
-  }catch(e){console.error(e);N.db=null;toast(t('errAuth'));return false}
+function netInit(silent){
+  if(N.db)return Promise.resolve(true);
+  if(N.initProm)return N.initProm;
+  N.initProm=(async()=>{
+    try{
+      const B=`https://www.gstatic.com/firebasejs/${FB_VER}/`;
+      const [A,D,Au]=await Promise.all([import(B+'firebase-app.js'),import(B+'firebase-database.js'),import(B+'firebase-auth.js')]);
+      const app=A.initializeApp(FBCFG);N.fb=D;N.db=D.getDatabase(app);
+      const auth=Au.getAuth(app);await auth.authStateReady();
+      if(!auth.currentUser)await Au.signInAnonymously(auth);
+      N.uid=auth.currentUser.uid;
+      D.onValue(D.ref(N.db,'.info/serverTimeOffset'),s=>{N.offset=s.val()||0});
+      return true;
+    }catch(e){console.error(e);N.db=null;N.initProm=null;if(!silent)toast(t('errAuth'));return false}
+  })();
+  return N.initProm;
 }
 const genCode=()=>{const a='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let s='';for(let i=0;i<5;i++)s+=a[Math.random()*a.length|0];return s};
 async function hashPass(s){
@@ -832,27 +836,41 @@ function getName(){
 function listen(path,cb,type){
   const r=R(path),f=N.fb[type||'onValue'](r,cb);N.unsub.push(f);
 }
+function bindPresence(){
+  const F=N.fb,pr=R(`rooms/${N.code}/players/${N.uid}/on`);
+  listen('.info/connected',s=>{if(s.val()===true){F.onDisconnect(pr).set(false);F.set(pr,true).catch(()=>{})}});
+}
 async function joinSelf(name){
   const F=N.fb;
   await F.update(R(`rooms/${N.code}/players/${N.uid}`),{name,j:F.serverTimestamp(),on:true});
-  const pr=R(`rooms/${N.code}/players/${N.uid}/on`);
-  listen('.info/connected',s=>{if(s.val()===true){F.onDisconnect(pr).set(false);F.set(pr,true).catch(()=>{})}});
+  bindPresence();
 }
 async function netCreate({pass,max,pub,auto}){
   const name=cfg.name;if(!await netInit())return;
   const F=N.fb,ph=pass?await hashPass(pass):'';let code,ok=false;
   for(let i=0;i<6&&!ok;i++){
     code=genCode();
-    try{const r=await F.runTransaction(R(`rooms/${code}/meta`),cur=>cur===null?{host:N.uid,pass:ph,max,pub:!!pub,min:auto?2:max}:undefined);ok=r.committed}catch(e){console.error(e);break}
+    try{
+      const r=await F.runTransaction(R(`rooms/${code}`),cur=>{
+        if(cur!==null)return undefined;
+        return{
+          meta:{host:N.uid,pass:ph,max,pub:!!pub,min:auto?2:max},
+          players:{[N.uid]:{name,j:F.serverTimestamp(),on:true}}
+        };
+      });
+      ok=r.committed;
+    }catch(e){console.error(e);break}
   }
   if(!ok){toast(t('errNet'));return}
   N.code=code;N.isHost=true;
-  await joinSelf(name);startRoomListeners();
+  N.meta={host:N.uid,pass:ph,max,pub:!!pub,min:auto?2:max};
+  N.players={[N.uid]:{name,j:Date.now(),on:true}};
+  show('sWait');sfx('join');
+  bindPresence();startRoomListeners(true);
   if(pub&&!pass){
     const lr=R('lobby/'+code),beat=()=>F.set(lr,{host:N.uid,n:Object.keys(N.players).length||1,max,t:F.serverTimestamp()}).catch(()=>{});
     F.onDisconnect(lr).remove();beat();N.hb=setInterval(beat,15000);N.beat=beat;
   }
-  show('sWait');sfx('join');
 }
 async function netJoin(code,pass,silent){
   const fail=k=>{if(!silent)toast(t(k));return k};
@@ -875,8 +893,9 @@ async function netJoin(code,pass,silent){
     startRoomListeners();show('sWait');sfx('join');return true;
   }catch(e){console.error(e);N.code=null;return fail('errNet')}
 }
-function startRoomListeners(){
-  const F=N.fb,c=N.code;N.players={};N.meta=null;
+function startRoomListeners(keepCache){
+  const F=N.fb,c=N.code;
+  if(!keepCache){N.players={};N.meta=null}
   listen(`rooms/${c}/meta`,s=>{
     if(!s.exists()){if(N.meta&&!N.leaving){toast(t('hostLeft'));netLeave(true)}return}
     N.meta=s.val();renderWait();
@@ -905,7 +924,6 @@ function onPlayers(){
       G.order.slice().forEach(u=>{if(!N.players[u]&&!G.bots[u])gRemove(u)});
       const cur=G.order[G.turn];if(cur&&N.players[cur]&&N.players[cur].on===false)schedule();
     }
-    // pemain offline terlalu lama dikeluarkan
     Object.entries(N.players).forEach(([u,p])=>{
       if(u===N.uid)return;
       if(p.on===false){if(!N.off[u])N.off[u]=setTimeout(()=>{if(N.players[u]&&N.players[u].on===false)F.remove(R(`rooms/${N.code}/players/${u}`)).catch(()=>{});delete N.off[u]},G?45000:15000)}
@@ -972,10 +990,8 @@ async function netRandom(){
   const name=getName();if(!name)return;
   const tok=C.findTok=Math.random();
   $('#findSub').textContent=t('findSub');openModal('mFind');
-  const t0=Date.now();
   if(!await netInit()){closeModal('mFind');return}
   let snap;try{snap=await N.fb.get(R('lobby'))}catch(e){closeModal('mFind');toast(t('errNet'));return}
-  await sleep(Math.max(0,2000-(Date.now()-t0)));
   if(C.findTok!==tok)return;
   const now=NOW();
   const cand=shuffle(Object.entries(snap.val()||{}).filter(([c,r])=>now-r.t<45000&&r.n<r.max&&r.host!==N.uid));
@@ -985,7 +1001,7 @@ async function netRandom(){
     if(r===true){closeModal('mFind');return}
   }
   if(C.findTok!==tok)return;
-  $('#findSub').textContent=t('noRoom');await sleep(1100);
+  $('#findSub').textContent=t('noRoom');await sleep(400);
   if(C.findTok!==tok)return;
   closeModal('mFind');
   await netCreate({pass:'',max:4,pub:true,auto:true});
@@ -1006,7 +1022,7 @@ function showEmo(u,k){
 /* ============ AKSI UI ============ */
 const A={
   single(){sfx('tap');openModal('mSetup')},
-  multi(){sfx('tap');$('#nameIn').value=cfg.name||'';show('sMulti')},
+  multi(){sfx('tap');$('#nameIn').value=cfg.name||'';show('sMulti');netInit(true)},
   opts(){sfx('tap');$('#rMus').value=cfg.music*100;$('#rSfx').value=cfg.sfx*100;$('#tempoSel').value=cfg.tempo;openModal('mOpt')},
   lang(b){cfg.lang=b.dataset.v;save();applyLang();sfx('tap')},
   close(b){sfx('tap');closeModal(b.dataset.m)},
